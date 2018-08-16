@@ -35,4 +35,17 @@ describe('EventEmitter', function() {
         expect (result).toEqual('result');
     });
 
+    it('should trigger a one-time event', function() {
+        let result = 'test';
+        const ee = new EventEmitter();
+        ee.registerOneTime('click', () => {
+            result = 'result';
+        });
+
+        ee.trigger('click');
+
+        expect (result).toEqual('result');
+        expect (ee.events['click']).not.toBeDefined()
+    });
+
 });
