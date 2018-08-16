@@ -1,4 +1,4 @@
-class EventEmitter {
+export class EventEmitter {
     constructor() {
         this.events = {};
     }
@@ -15,6 +15,7 @@ class EventEmitter {
 
     registerOneTime(name, callback) {
         if(this.events[name]) {
+            this.event[name].push(callback);
             this.events[name].oneTime = true;
         } else {
             this.events[name] = [callback];

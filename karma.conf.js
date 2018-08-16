@@ -1,5 +1,7 @@
 // Karma configuration
-// Generated on Tue Aug 14 2018 13:57:17 GMT-0700 (Pacific Daylight Time)
+// Generated on Wed Aug 15 2018 18:58:16 GMT-0700 (Pacific Daylight Time)
+const webpackConfig = require('./webpack.config.js');
+
 
 module.exports = function(config) {
   config.set({
@@ -15,7 +17,11 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-    ],
+      'src/*.js',
+      'spec/*spec.js'
+    ],     
+    webpack: webpackConfig,
+
 
 
     // list of files / patterns to exclude
@@ -26,15 +32,21 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'src/*.js': ['webpack', 'sourcemap'],
-      'spec/*spec.js': ['webpack', 'sourcemap']
+      'src/*.js': ['webpack'],
+      'spec/*spec.js': ['webpack']
     },
+    plugins: [
+      'karma-webpack',
+      'karma-jasmine',
+      'karma-chrome-launcher',
+      'karma-jasmine-html-reporter'
+    ],
 
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: ['progress', 'kjhtml'],
 
 
     // web server port
