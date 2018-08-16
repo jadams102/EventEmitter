@@ -6,7 +6,6 @@ describe('EventEmitter', function() {
         ee.register('click', () => function() {
             console.log('test one');
         });
-        expect (ee.click).toEqual(true)
-        );
+        expect (ee.events['click']).toBeDefined();
     });
 });
