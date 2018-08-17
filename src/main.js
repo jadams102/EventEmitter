@@ -27,7 +27,7 @@ export class EventEmitter {
     trigger(name, ...rest) {
         if (this.events[name]) {
             this.events[name].forEach(cb =>
-            cb.apply(rest)
+            cb.apply(null, ...rest)
             );
         }
 

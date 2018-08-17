@@ -48,4 +48,23 @@ describe('EventEmitter', function() {
         expect (ee.events['click']).not.toBeDefined()
     });
 
+    it('should register a function with any number of arguments', function() {
+        let varOne = 'One';
+        let varTwo = 'Two';
+        let varThree = 'Three';
+        let result = [];
+
+        const ee = new EventEmitter();
+
+        function ArrayMaker(One, Two, Three) {
+            result = [One, Two, Three];
+        }
+
+        ee.registerOneTime('click', ArrayMaker);
+
+        ee.trigger('click', [varOne, varTwo, varThree]);
+
+        expect (result).toEqual(['One', 'Two', 'Three']);
+    });
+
 });
