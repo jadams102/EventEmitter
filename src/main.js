@@ -8,9 +8,7 @@ export class EventEmitter {
             this.event[name].push(callback);
         } else {
             this.events[name] = [callback]
-            this.events[name].oneTime = false;
         }
-
     }
 
     registerOneTime(name, callback) {
