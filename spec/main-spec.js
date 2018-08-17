@@ -89,4 +89,28 @@ describe('EventEmitter', function() {
         expect (ee.events['clickAThirdTime']).toBeDefined();
     });
 
+    it('should remove all named events', function() {
+        const ee = new EventEmitter();
+
+        ee.register('click', () => {
+            console.log('test one');
+        });
+
+        ee.register('clickAgain', () => {
+            console.log('test two');
+        });
+
+        ee.register('clickAThirdTime', () => {
+            console.log('test three');
+        });
+
+        ee.removeAll();
+
+        expect (ee.events['click']).not.toBeDefined();
+        expect (ee.events['clickAgain']).not.toBeDefined();
+        expect (ee.events['clickAThirdTime']).not.toBeDefined();
+    });
+
+    
+
 });
